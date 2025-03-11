@@ -6,9 +6,6 @@ const intersected = [];
 const tempMatrix = new THREE.Matrix4();
 let isVRMode = false;
 
-init();
-animate();
-
 function init() {
     const container = document.createElement('div');
     document.body.appendChild(container);
