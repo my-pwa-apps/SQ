@@ -6,6 +6,52 @@ const intersected = [];
 const tempMatrix = new THREE.Matrix4();
 let isVRMode = false;
 
+function createAmbientSound() {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const bufferSize = 2 * audioContext.sampleRate;
+    const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+
+    for (let i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+    }
+
+    const whiteNoise = audioContext.createBufferSource();
+    whiteNoise.buffer = noiseBuffer;
+    whiteNoise.loop = true;
+
+    const gainNode = audioContext.createGain();
+    gainNode.gain.value = 0.1;
+
+    whiteNoise.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    whiteNoise.start(0);
+}
+
+function createChiptuneMusic() {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.type = 'square';
+    oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+
+    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    oscillator.start();
+
+    // Simple chiptune melody
+    const melody = [440, 494, 523, 587, 659, 698, 784, 880];
+    let index = 0;
+
+    setInterval(() => {
+        oscillator.frequency.setValueAtTime(melody[index], audioContext.currentTime);
+        index = (index + 1) % melody.length;
+    }, 500);
+}
+
 function init() {
     const container = document.createElement('div');
     document.body.appendChild(container);
@@ -74,11 +120,9 @@ function init() {
     npc1.position.set(1, 1.5, -1);
     scene.add(npc1);
 
-    // Play ambient sound and music
-    const ambientSound = document.getElementById('ambientSound');
-    const chiptuneMusic = document.getElementById('chiptuneMusic');
-    ambientSound.play();
-    chiptuneMusic.play();
+    // Create ambient sound and chiptune music
+    createAmbientSound();
+    createChiptuneMusic();
 
     // Desktop interaction
     window.addEventListener('click', onMouseClick, false);
