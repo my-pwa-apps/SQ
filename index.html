@@ -32,9 +32,9 @@
     <audio id="ambientSound" src="ambient.mp3" loop></audio>
     <audio id="chiptuneMusic" src="chiptune.mp3" loop></audio>
     <script type="module">
-        import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
-        import { VRButton } from 'https://threejs.org/examples/jsm/webxr/VRButton.js';
-        import { XRControllerModelFactory } from 'https://threejs.org/examples/jsm/webxr/XRControllerModelFactory.js';
+        import * as THREE from './three.module.js';
+        import { VRButton } from './VRButton.js';
+        import { XRControllerModelFactory } from './XRControllerModelFactory.js';
         import { init, animate } from './game.js';
 
         window.THREE = THREE;
