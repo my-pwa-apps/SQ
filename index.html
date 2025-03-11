@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Quest VR</title>
+    <style>
+        #parserInput, #inventory, #dialogue {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #inventory {
+            left: 200px;
+        }
+        #dialogue {
+            left: 400px;
+        }
+    </style>
+</head>
+<body>
+    <button id="vrButton">Enter VR</button>
+    <button id="toggleVRButton">Toggle VR Mode</button>
+    <input type="text" id="parserInput" placeholder="Enter command...">
+    <div id="inventory">Inventory: </div>
+    <div id="dialogue">Dialogue: </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@webxr-input-profiles/motion-controllers@1.0.0/dist/motion-controllers.module.js"></script>
+    <script src="game.js" defer></script>
+</body>
+</html>
