@@ -59,7 +59,117 @@ function init() {
     raycaster = new THREE.Raycaster();
 
     window.addEventListener('resize', onWindowResize, false);
+
+    // Example objects
+    const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+    const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+
+    const keycard = new THREE.Mesh(geometry, material);
+    keycard.name = 'keycard';
+    keycard.position.set(0, 1.5, -1);
+    scene.add(keycard);
+
+    const npc1 = new THREE.Mesh(geometry, material);
+    npc1.name = 'npc1';
+    npc1.position.set(1, 1.5, -1);
+    scene.add(npc1);
+
+    // Play ambient sound and music
+    const ambientSound = document.getElementById('ambientSound');
+    const chiptuneMusic = document.getElementById('chiptuneMusic');
+    ambientSound.play();
+    chiptuneMusic.play();
+
+    // Desktop interaction
+    window.addEventListener('click', onMouseClick, false);
 }
+
+function onMouseClick(event) {
+    const mouse = new THREE.Vector2();
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(scene.children);
+
+    if (intersects.length > 0) {
+        const object = intersects[0].object;
+        if (object.name === 'keycard') {
+            addToInventory('Keycard');
+        } else if (object.name === 'npc1') {
+            startDialogue('npc1');
+        } else {
+            handleCommand('look at');
+        }
+    }
+}
+
+// Text-Parser Mechanic
+function handleCommand(command) {
+    switch (command.toLowerCase()) {
+        case 'look at':
+            // Handle look at command
+            break;
+        case 'talk to':
+            // Handle talk to command
+            break;
+        case 'use':
+            // Handle use command
+            break;
+        case 'pick up':
+            // Handle pick up command
+            break;
+        default:
+            console.log('Unknown command');
+    }
+}
+
+document.getElementById('parserInput').addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        const command = event.target.value;
+        handleCommand(command);
+        event.target.value = '';
+    }
+});
+
+// Inventory System
+const inventory = [];
+
+function addToInventory(item) {
+    inventory.push(item);
+    document.getElementById('inventory').innerText = 'Inventory: ' + inventory.join(', ');
+}
+
+// Dialogue Trees
+const dialogues = {
+    npc1: [
+        'Hello, traveler!',
+        'What brings you to this part of the galaxy?',
+        'Safe travels!'
+    ]
+};
+
+function startDialogue(npc) {
+    const dialogue = dialogues[npc];
+    if (dialogue) {
+        let dialogueIndex = 0;
+        const dialogueElement = document.getElementById('dialogue');
+        dialogueElement.innerText = dialogue[dialogueIndex];
+
+        dialogueElement.addEventListener('click', () => {
+            dialogueIndex++;
+            if (dialogueIndex < dialogue.length) {
+                dialogueElement.innerText = dialogue[dialogueIndex];
+            } else {
+                dialogueElement.innerText = 'Dialogue: ';
+            }
+        });
+    }
+}
+
+// Example usage
+addToInventory('Keycard');
+startDialogue('npc1');
 
 function toggleVRMode() {
     isVRMode = !isVRMode;
@@ -89,6 +199,15 @@ function onSelectStart(event) {
         const object = intersection.object;
         object.material.emissive.b = 1;
         controller.userData.selected = object;
+
+        // Example interaction logic
+        if (object.name === 'keycard') {
+            addToInventory('Keycard');
+        } else if (object.name === 'npc1') {
+            startDialogue('npc1');
+        } else {
+            handleCommand('look at');
+        }
     }
 }
 
