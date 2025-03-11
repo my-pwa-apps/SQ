@@ -10,6 +10,84 @@ const intersected = [];
 const tempMatrix = new THREE.Matrix4();
 let isVRMode = false;
 
+const parserInput = document.getElementById('commandInput');
+const dialogueDiv = document.getElementById('dialogue');
+const inventoryDiv = document.getElementById('inventory');
+let inventory = [];
+let currentRoom = 'crashSite';
+
+const rooms = {
+    crashSite: {
+        description: 'You are at the crash site of your spaceship. There is debris everywhere. To the north, you see a path leading to a dense forest.',
+        exits: { north: 'forest' },
+        items: ['wrench']
+    },
+    forest: {
+        description: 'You are in a dense forest. The trees are tall and the atmosphere is eerie. There is a path leading back to the south and another path leading east.',
+        exits: { south: 'crashSite', east: 'spaceBar' },
+        items: []
+    },
+    spaceBar: {
+        description: 'You are in a seedy space bar. The place is filled with shady characters and the smell of alien drinks. There is a door to the west.',
+        exits: { west: 'forest' },
+        items: ['keycard']
+    }
+};
+
+function renderRoom(room) {
+    dialogueDiv.textContent = room.description;
+}
+
+function updateInventory() {
+    inventoryDiv.textContent = 'Inventory: ' + inventory.join(', ');
+}
+
+function handleCommand(command) {
+    const [verb, ...args] = command.split(' ');
+    const object = args.join(' ');
+
+    switch (verb) {
+        case 'look':
+            dialogueDiv.textContent = rooms[currentRoom].description;
+            break;
+        case 'take':
+            if (rooms[currentRoom].items.includes(object)) {
+                inventory.push(object);
+                rooms[currentRoom].items = rooms[currentRoom].items.filter(item => item !== object);
+                updateInventory();
+                dialogueDiv.textContent = `You take the ${object}.`;
+            } else {
+                dialogueDiv.textContent = `There is no ${object} here.`;
+            }
+            break;
+        case 'use':
+            if (inventory.includes(object)) {
+                dialogueDiv.textContent = `You use the ${object}.`;
+            } else {
+                dialogueDiv.textContent = `You don't have a ${object}.`;
+            }
+            break;
+        case 'go':
+            if (rooms[currentRoom].exits[object]) {
+                currentRoom = rooms[currentRoom].exits[object];
+                renderRoom(rooms[currentRoom]);
+            } else {
+                dialogueDiv.textContent = `You can't go ${object} from here.`;
+            }
+            break;
+        default:
+            dialogueDiv.textContent = `I don't understand the command "${command}".`;
+            break;
+    }
+}
+
+parserInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        handleCommand(parserInput.value);
+        parserInput.value = '';
+    }
+});
+
 init();
 animate();
 
@@ -150,6 +228,6 @@ function render() {
 
     intersectObjects(controller1);
     intersectObjects(controller2);
-
+    
     renderer.render(scene, camera);
 }
