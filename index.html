@@ -35,6 +35,10 @@
         import { XRControllerModelFactory } from './XRControllerModelFactory.js';
         import { init, animate } from './game.js';
 
+        if (!window.WebGLAnimation) {
+            window.WebGLAnimation = THREE.WebGLAnimation;
+        }
+
         window.THREE = THREE;
         window.VRButton = VRButton;
         window.XRControllerModelFactory = XRControllerModelFactory;
