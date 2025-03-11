@@ -30,18 +30,20 @@
     <div id="inventory">Inventory: </div>
     <div id="dialogue">Dialogue: </div>
     <script type="module">
-        import * as THREE from './three.module.js';
-        import { VRButton } from './VRButton.js';
-        import { XRControllerModelFactory } from './XRControllerModelFactory.js';
-        import { init } from './game.js';
+        import { loadThreeJs } from './three-shim.js';
+        import { init, animate } from './game.js';
 
-        window.THREE = THREE;
-        window.VRButton = VRButton;
-        window.XRControllerModelFactory = XRControllerModelFactory;
+        async function startApp() {
+            await loadThreeJs();
+            init();
+            
+            // Check if animate exists before calling it
+            if (typeof animate === 'function') {
+                animate();
+            }
+        }
 
-        init();
-        // The animate function is likely called within init() or doesn't exist
-        // as a separate export in game.js
+        startApp();
     </script>
 </body>
 </html>
