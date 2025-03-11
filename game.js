@@ -52,15 +52,9 @@ function createChiptuneMusic() {
     }, 500);
 }
 
-function init() {
-    const container = document.createElement('div');
-    document.body.appendChild(container);
-
+function setupScene() {
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0x000000);
-
-    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 1.6, 3);
 
     const light = new THREE.HemisphereLight(0xffffff, 0x444444);
     light.position.set(0, 1, 0);
@@ -68,20 +62,30 @@ function init() {
 
     const ambientLight = new THREE.AmbientLight(0x404040);
     scene.add(ambientLight);
+}
 
+function setupCamera() {
+    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 1.6, 3);
+}
+
+function setupRenderer() {
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.xr.enabled = true;
-    container.appendChild(renderer.domElement);
+    document.body.appendChild(renderer.domElement);
+}
 
+function setupVR() {
     document.getElementById('vrButton').addEventListener('click', () => {
         document.body.appendChild(VRButton.createButton(renderer));
     });
 
     document.getElementById('toggleVRButton').addEventListener('click', toggleVRMode);
+}
 
-    // Controllers
+function setupControllers() {
     controller1 = renderer.xr.getController(0);
     controller1.addEventListener('selectstart', onSelectStart);
     controller1.addEventListener('selectend', onSelectEnd);
@@ -101,10 +105,23 @@ function init() {
     controllerGrip2 = renderer.xr.getControllerGrip(1);
     controllerGrip2.add(controllerModelFactory.createControllerModel(controllerGrip2));
     scene.add(controllerGrip2);
+}
 
-    raycaster = new THREE.Raycaster();
-
+function setupEventListeners() {
     window.addEventListener('resize', onWindowResize, false);
+    window.addEventListener('click', onMouseClick, false);
+}
+
+function init() {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
+    setupScene();
+    setupCamera();
+    setupRenderer();
+    setupVR();
+    setupControllers();
+    setupEventListeners();
 
     // Example objects
     const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
@@ -123,9 +140,6 @@ function init() {
     // Create ambient sound and chiptune music
     createAmbientSound();
     createChiptuneMusic();
-
-    // Desktop interaction
-    window.addEventListener('click', onMouseClick, false);
 }
 
 function onMouseClick(event) {
