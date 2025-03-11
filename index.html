@@ -30,32 +30,18 @@
     <div id="inventory">Inventory: </div>
     <div id="dialogue">Dialogue: </div>
     <script type="module">
-        // Use a single import to prevent duplicate loading issues
-        let THREE, VRButton, XRControllerModelFactory;
-        
-        // Only import if not already available
-        if (!window.THREE) {
-            const threeModule = await import('./three.module.js');
-            THREE = threeModule.default || threeModule;
-            
-            const vrButtonModule = await import('./VRButton.js');
-            VRButton = vrButtonModule.VRButton;
-            
-            const xrControllerModule = await import('./XRControllerModelFactory.js');
-            XRControllerModelFactory = xrControllerModule.XRControllerModelFactory;
-            
-            window.THREE = THREE;
-            window.VRButton = VRButton;
-            window.XRControllerModelFactory = XRControllerModelFactory;
-        } else {
-            THREE = window.THREE;
-            VRButton = window.VRButton;
-            XRControllerModelFactory = window.XRControllerModelFactory;
-        }
+        import * as THREE from './three.module.js';
+        import { VRButton } from './VRButton.js';
+        import { XRControllerModelFactory } from './XRControllerModelFactory.js';
+        import { init } from './game.js';
 
-        import { init, animate } from './game.js';
+        window.THREE = THREE;
+        window.VRButton = VRButton;
+        window.XRControllerModelFactory = XRControllerModelFactory;
+
         init();
-        animate();
+        // The animate function is likely called within init() or doesn't exist
+        // as a separate export in game.js
     </script>
 </body>
 </html>
