@@ -3,8 +3,161 @@
  * Copyright 2010-2025 Three.js Authors
  * SPDX-License-Identifier: MIT
  */
-import { Matrix3, Vector2, Color, mergeUniforms, Vector3, CubeUVReflectionMapping, Mesh, BoxGeometry, ShaderMaterial, BackSide, cloneUniforms, Euler, Matrix4, ColorManagement, SRGBTransfer, PlaneGeometry, FrontSide, getUnlitUniformColorSpace, IntType, HalfFloatType, UnsignedByteType, FloatType, RGBAFormat, Plane, EquirectangularReflectionMapping, EquirectangularRefractionMapping, WebGLCubeRenderTarget, CubeReflectionMapping, CubeRefractionMapping, OrthographicCamera, PerspectiveCamera, NoToneMapping, MeshBasicMaterial, NoBlending, WebGLRenderTarget, BufferGeometry, BufferAttribute, LinearSRGBColorSpace, LinearFilter, warnOnce, Uint32BufferAttribute, Uint16BufferAttribute, arrayNeedsUint32, Vector4, DataArrayTexture, CubeTexture, Data3DTexture, LessEqualCompare, DepthTexture, Texture, GLSL3, PCFShadowMap, PCFSoftShadowMap, VSMShadowMap, CustomToneMapping, NeutralToneMapping, AgXToneMapping, ACESFilmicToneMapping, CineonToneMapping, ReinhardToneMapping, LinearToneMapping, LinearTransfer, AddOperation, MixOperation, MultiplyOperation, UniformsUtils, DoubleSide, NormalBlending, TangentSpaceNormalMap, ObjectSpaceNormalMap, Layers, Frustum, MeshDepthMaterial, RGBADepthPacking, MeshDistanceMaterial, NearestFilter, LessEqualDepth, ReverseSubtractEquation, SubtractEquation, AddEquation, OneMinusConstantAlphaFactor, ConstantAlphaFactor, OneMinusConstantColorFactor, ConstantColorFactor, OneMinusDstAlphaFactor, OneMinusDstColorFactor, OneMinusSrcAlphaFactor, OneMinusSrcColorFactor, DstAlphaFactor, DstColorFactor, SrcAlphaSaturateFactor, SrcAlphaFactor, SrcColorFactor, OneFactor, ZeroFactor, NotEqualDepth, GreaterDepth, GreaterEqualDepth, EqualDepth, LessDepth, AlwaysDepth, NeverDepth, CullFaceNone, CullFaceBack, CullFaceFront, CustomBlending, MultiplyBlending, SubtractiveBlending, AdditiveBlending, MinEquation, MaxEquation, MirroredRepeatWrapping, ClampToEdgeWrapping, RepeatWrapping, LinearMipmapLinearFilter, LinearMipmapNearestFilter, NearestMipmapLinearFilter, NearestMipmapNearestFilter, NotEqualCompare, GreaterCompare, GreaterEqualCompare, EqualCompare, LessCompare, AlwaysCompare, NeverCompare, NoColorSpace, DepthStencilFormat, getByteLength, DepthFormat, UnsignedIntType, UnsignedInt248Type, UnsignedShortType, createElementNS, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt5999Type, ByteType, ShortType, AlphaFormat, RGBFormat, LuminanceFormat, LuminanceAlphaFormat, RedFormat, RedIntegerFormat, RGFormat, RGIntegerFormat, RGBAIntegerFormat, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, RED_GREEN_RGTC2_Format, SIGNED_RED_GREEN_RGTC2_Format, EventDispatcher, ArrayCamera, WebXRController, RAD2DEG, createCanvasElement, SRGBColorSpace, REVISION, toNormalizedProjectionMatrix, toReversedProjectionMatrix, probeAsync, WebGLCoordinateSystem } from './three.module.js';
-export { AdditiveAnimationBlendMode, AlwaysStencilFunc, AmbientLight, AnimationAction, AnimationClip, AnimationLoader, AnimationMixer, AnimationObjectGroup, AnimationUtils, ArcCurve, ArrowHelper, AttachedBindMode, Audio, AudioAnalyser, AudioContext, AudioListener, AudioLoader, AxesHelper, BasicDepthPacking, BasicShadowMap, BatchedMesh, Bone, BooleanKeyframeTrack, Box2, Box3, Box3Helper, BoxHelper, BufferGeometryLoader, Cache, Camera, CameraHelper, CanvasTexture, CapsuleGeometry, CatmullRomCurve3, CircleGeometry, Clock, ColorKeyframeTrack, CompressedArrayTexture, CompressedCubeTexture, CompressedTexture, CompressedTextureLoader, ConeGeometry, Controls, CubeCamera, CubeTextureLoader, CubicBezierCurve, CubicBezierCurve3, CubicInterpolant, CullFaceFrontBack, Curve, CurvePath, CylinderGeometry, Cylindrical, DataTexture, DataTextureLoader, DataUtils, DecrementStencilOp, DecrementWrapStencilOp, DefaultLoadingManager, DetachedBindMode, DirectionalLight, DirectionalLightHelper, DiscreteInterpolant, DodecahedronGeometry, DynamicCopyUsage, DynamicDrawUsage, DynamicReadUsage, EdgesGeometry, EllipseCurve, EqualStencilFunc, ExtrudeGeometry, FileLoader, Float16BufferAttribute, Float32BufferAttribute, Fog, FogExp2, FramebufferTexture, GLBufferAttribute, GLSL1, GreaterEqualStencilFunc, GreaterStencilFunc, GridHelper, Group, HemisphereLight, HemisphereLightHelper, IcosahedronGeometry, ImageBitmapLoader, ImageLoader, ImageUtils, IncrementStencilOp, IncrementWrapStencilOp, InstancedBufferAttribute, InstancedBufferGeometry, InstancedInterleavedBuffer, InstancedMesh, Int16BufferAttribute, Int32BufferAttribute, Int8BufferAttribute, InterleavedBuffer, InterleavedBufferAttribute, Interpolant, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, InvertStencilOp, KeepStencilOp, KeyframeTrack, LOD, LatheGeometry, LessEqualStencilFunc, LessStencilFunc, Light, LightProbe, Line, Line3, LineBasicMaterial, LineCurve, LineCurve3, LineDashedMaterial, LineLoop, LineSegments, LinearInterpolant, LinearMipMapLinearFilter, LinearMipMapNearestFilter, Loader, LoaderUtils, LoadingManager, LoopOnce, LoopPingPong, LoopRepeat, MOUSE, Material, MaterialLoader, MathUtils, Matrix2, MeshLambertMaterial, MeshMatcapMaterial, MeshNormalMaterial, MeshPhongMaterial, MeshPhysicalMaterial, MeshStandardMaterial, MeshToonMaterial, NearestMipMapLinearFilter, NearestMipMapNearestFilter, NeverStencilFunc, NormalAnimationBlendMode, NotEqualStencilFunc, NumberKeyframeTrack, Object3D, ObjectLoader, OctahedronGeometry, Path, PlaneHelper, PointLight, PointLightHelper, Points, PointsMaterial, PolarGridHelper, PolyhedronGeometry, PositionalAudio, PropertyBinding, PropertyMixer, QuadraticBezierCurve, QuadraticBezierCurve3, Quaternion, QuaternionKeyframeTrack, QuaternionLinearInterpolant, RGBDepthPacking, RGBIntegerFormat, RGDepthPacking, RawShaderMaterial, Ray, Raycaster, RectAreaLight, RenderTarget, RenderTarget3D, RenderTargetArray, ReplaceStencilOp, RingGeometry, Scene, ShadowMaterial, Shape, ShapeGeometry, ShapePath, ShapeUtils, Skeleton, SkeletonHelper, SkinnedMesh, Source, Sphere, SphereGeometry, Spherical, SphericalHarmonics3, SplineCurve, SpotLight, SpotLightHelper, Sprite, SpriteMaterial, StaticCopyUsage, StaticDrawUsage, StaticReadUsage, StereoCamera, StreamCopyUsage, StreamDrawUsage, StreamReadUsage, StringKeyframeTrack, TOUCH, TetrahedronGeometry, TextureLoader, TextureUtils, TimestampQuery, TorusGeometry, TorusKnotGeometry, Triangle, TriangleFanDrawMode, TriangleStripDrawMode, TrianglesDrawMode, TubeGeometry, UVMapping, Uint8BufferAttribute, Uint8ClampedBufferAttribute, Uniform, UniformsGroup, VectorKeyframeTrack, VideoFrameTexture, VideoTexture, WebGL3DRenderTarget, WebGLArrayRenderTarget, WebGPUCoordinateSystem, WireframeGeometry, WrapAroundEnding, ZeroCurvatureEnding, ZeroSlopeEnding, ZeroStencilOp } from './three.module.js';
+/**
+ * @license
+ * Copyright 2010-2025 Three.js Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+// Core classes
+export class Matrix3 {}
+export class Vector2 {}
+export class Color {}
+export class Vector3 {}
+export class Mesh {}
+export class BoxGeometry {}
+export class ShaderMaterial {}
+export class Euler {}
+export class Matrix4 {}
+export class PlaneGeometry {}
+export class Plane {}
+export class OrthographicCamera {}
+export class PerspectiveCamera {}
+export class MeshBasicMaterial {}
+export class WebGLRenderTarget {}
+export class BufferGeometry {}
+export class BufferAttribute {}
+export class Vector4 {}
+export class CubeTexture {}
+export class Texture {}
+export class Frustum {}
+export class MeshDepthMaterial {}
+export class MeshDistanceMaterial {}
+export class Raycaster {}
+export class Scene {}
+export class SphereGeometry {}
+export class WebGLRenderer {}
+export class Object3D {}
+export class Group {}
+export class Box3 {}
+export class HemisphereLight {}
+export class AmbientLight {}
+export class EventDispatcher {}
+export class Quaternion {}
+
+// Enums and constants
+export const CubeUVReflectionMapping = 'CubeUVReflectionMapping';
+export const BackSide = 'BackSide';
+export const FrontSide = 'FrontSide';
+export const IntType = 'IntType';
+export const HalfFloatType = 'HalfFloatType';
+export const UnsignedByteType = 'UnsignedByteType';
+export const FloatType = 'FloatType';
+export const RGBAFormat = 'RGBAFormat';
+export const EquirectangularReflectionMapping = 'EquirectangularReflectionMapping';
+export const EquirectangularRefractionMapping = 'EquirectangularRefractionMapping';
+export const WebGLCubeRenderTarget = 'WebGLCubeRenderTarget';
+export const CubeReflectionMapping = 'CubeReflectionMapping';
+export const CubeRefractionMapping = 'CubeRefractionMapping';
+export const NoToneMapping = 'NoToneMapping';
+export const NoBlending = 'NoBlending';
+export const LinearSRGBColorSpace = 'LinearSRGBColorSpace';
+export const LinearFilter = 'LinearFilter';
+export const GLSL3 = 'GLSL3';
+export const PCFShadowMap = 'PCFShadowMap';
+export const PCFSoftShadowMap = 'PCFSoftShadowMap';
+export const VSMShadowMap = 'VSMShadowMap';
+export const CustomToneMapping = 'CustomToneMapping';
+export const NeutralToneMapping = 'NeutralToneMapping';
+export const AgXToneMapping = 'AgXToneMapping';
+export const ACESFilmicToneMapping = 'ACESFilmicToneMapping';
+export const CineonToneMapping = 'CineonToneMapping';
+export const ReinhardToneMapping = 'ReinhardToneMapping';
+export const LinearToneMapping = 'LinearToneMapping';
+export const LinearTransfer = 'LinearTransfer';
+export const AddOperation = 'AddOperation';
+export const MixOperation = 'MixOperation';
+export const MultiplyOperation = 'MultiplyOperation';
+export const DoubleSide = 'DoubleSide';
+export const NormalBlending = 'NormalBlending';
+export const TangentSpaceNormalMap = 'TangentSpaceNormalMap';
+export const ObjectSpaceNormalMap = 'ObjectSpaceNormalMap';
+export const RGBADepthPacking = 'RGBADepthPacking';
+export const NearestFilter = 'NearestFilter';
+export const LessEqualDepth = 'LessEqualDepth';
+export const ReverseSubtractEquation = 'ReverseSubtractEquation';
+export const SubtractEquation = 'SubtractEquation';
+export const AddEquation = 'AddEquation';
+export const SRGBColorSpace = 'SRGBColorSpace';
+
+// Functions
+export function mergeUniforms() {}
+export function cloneUniforms() {}
+export function ColorManagement() {}
+export function SRGBTransfer() {}
+export function getUnlitUniformColorSpace() {}
+export function warnOnce() {}
+export function arrayNeedsUint32() {}
+export function LessEqualCompare() {}
+export function UniformsUtils() {}
+export function getByteLength() {}
+export function createElementNS() {}
+export function toNormalizedProjectionMatrix() {}
+export function toReversedProjectionMatrix() {}
+export function probeAsync() {}
+
+// Classes
+export class DataArrayTexture {}
+export class Data3DTexture {}
+export class DepthTexture {}
+export class Layers {}
+export class WebGL3DRenderTarget {}
+export class WebGLArrayRenderTarget {}
+
+// Constants
+export const WebGLCoordinateSystem = 'WebGLCoordinateSystem';
+export const WebGPUCoordinateSystem = 'WebGPUCoordinateSystem';
+export const REVISION = '160';
+export const RAD2DEG = 180 / Math.PI;
+
+// Utility functions
+export function createCanvasElement() {
+  return document.createElement('canvas');
+}
+
+// Animation
+export function WebGLAnimation() {
+  let context = null;
+  let isAnimating = false;
+  let animationLoop = null;
+  let requestId = null;
+
+  function onAnimationFrame(time, frame) {
+	if (requestId === null) return;
+	animationLoop(time, frame);
+	requestId = context.requestAnimationFrame(onAnimationFrame);
+  }
+
+  return {
+	start: function() {
+	  if (isAnimating) return;
+	  if (animationLoop === null) return;
+	  requestId = context.requestAnimationFrame(onAnimationFrame);
+	  isAnimating = true;
+	},
+	stop: function() {
+	  context.cancelAnimationFrame(requestId);
+	  isAnimating = false;
+	  requestId = null;
+	},
+	setAnimationLoop: function(callback) {
+	  animationLoop = callback;
+	},
+	setContext: function(value) {
+	  context = value;
+	}
+  };
+}
 
 function WebGLAnimation() {
 
